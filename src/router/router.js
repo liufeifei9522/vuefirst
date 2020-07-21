@@ -1,14 +1,25 @@
-import Vue from 'vue'
-import Router from 'view-router'
 
-Vue.use(Router)
+function load(name) {
+  // return resolve => require([`views/${component}`], resolve);
+  return resolve => require ([`views/${name}`], resolve);
+}
 
-export const Routes=[
+const routes =[
   {
-    path: '/login',
-    component: () => import('@/views/login/index'),
+    path: '/',
+    name:'login',
+    component: load('longin'),
+    meta:{
+      title:'首页'
+    },
     hidden: true
+  },
+  {
+    path:'*',
+    redirect:{
+      path:'/'
+    }
   }
 ]
 
-export default Routes
+export default routes
